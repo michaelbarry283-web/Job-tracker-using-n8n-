@@ -1,0 +1,520 @@
+{
+  "name": "Michael Yahaya-Job Application Tracker",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Job Application – Daniel Okafor Logistics",
+        "formDescription": "We are hiring for three roles in Lagos. Fill in every field carefully — incomplete submissions will not be considered.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Full Name",
+              "fieldName": "full_name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email Address",
+              "fieldType": "email",
+              "fieldName": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Phone Number",
+              "fieldName": "phone",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Position Applying For",
+              "fieldType": "dropdown",
+              "fieldName": "position",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Logistics Coordinator"
+                  },
+                  {
+                    "option": "Dispatch Rider"
+                  },
+                  {
+                    "option": "Warehouse Manager"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Years of Experience",
+              "fieldType": "number",
+              "fieldName": "years_of_experience",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Current Location",
+              "fieldName": "current_location",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Link to CV / Portfolio",
+              "fieldName": "cv_link",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Why do you want this role?",
+              "fieldType": "textarea",
+              "fieldName": "motivation",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "path": "job-application",
+          "respondWithOptions": {
+            "values": {
+              "formSubmittedText": "Thank you for applying! We have received your application and will be in touch shortly."
+            }
+          }
+        }
+      },
+      "id": "0cc9cddd-a5f9-4cf2-9df7-0912491ebbad",
+      "name": "Job Application Form",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        -80,
+        240
+      ],
+      "webhookId": "49621d45-d47c-4752-bb36-49019f37a8de"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.email }}",
+        "subject": "=We received your application – {{ $json.position }}",
+        "message": "=<p>Dear {{ $json.full_name }},</p><p>Thank you for applying for the <strong>{{ $json.position }}</strong> role at Daniel Okafor Logistics.</p><p>We have received your application and our HR team will review it shortly. We will be in touch.</p><p>Best regards,<br>Daniel Okafor Logistics</p>",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "e4928c46-5cff-4a49-a58e-6249511342d6",
+      "name": "Confirmation Email to Applicant",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        -48
+      ],
+      "webhookId": "1ab5aa54-77b7-48e3-bc32-716f1a034af9",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "70ijxgzsrPyWux9k",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1P8mu2lvm859vDHBaoIgDsUhrx_bo4ztju6AvR_DaCj0"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": 1642725162,
+          "cachedResultName": "Form responses 1"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Full Name": "={{ $json.full_name }}",
+            "Email": "={{ $json.email }}",
+            "Phone Number": "={{ $json.phone }}",
+            "Position/Role": "={{ $json.position }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Full Name",
+              "displayName": "Full Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phone Number",
+              "displayName": "Phone Number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Position/Role",
+              "displayName": "Position/Role",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Event they want to attend",
+              "displayName": "Event they want to attend",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Preferred Session",
+              "displayName": "Preferred Session",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Numer of Tickets",
+              "displayName": "Numer of Tickets",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "How they heard about us",
+              "displayName": "How they heard about us",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "644ddc97-6afb-4cc9-b4ec-71a3cac0443b",
+      "name": "Save to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        224,
+        192
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "myu2SHgm1RJEceyI",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "barotex65@gmail.com",
+        "subject": "=New Applicant: {{ $json.full_name }} – {{ $json.position }}",
+        "message": "=<p>Hi HR Team,</p><p>A new application has just been submitted. Here are the details:</p><ul><li><strong>Name:</strong> {{ $json.full_name }}</li><li><strong>Email:</strong> {{ $json.email }}</li><li><strong>Phone:</strong> {{ $json.phone }}</li><li><strong>Position:</strong> {{ $json.position }}</li><li><strong>Years of Experience:</strong> {{ $json.years_of_experience }}</li><li><strong>Location:</strong> {{ $json.current_location }}</li><li><strong>CV / Portfolio:</strong> <a href=\"{{ $json.cv_link }}\">{{ $json.cv_link }}</a></li></ul><p>Please review in Google Sheets.</p>",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "8d48ccbf-9182-4275-885e-ddc93f78b543",
+      "name": "Notify HR Team",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        384
+      ],
+      "webhookId": "85422bcd-ddb0-40bc-a8b6-0fb06d15e0dd",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "70ijxgzsrPyWux9k",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 1
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.years_of_experience }}",
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    },
+                    "rightValue": 2
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "0–2 Years"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 1
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.years_of_experience }}",
+                    "operator": {
+                      "type": "number",
+                      "operation": "gte"
+                    },
+                    "rightValue": 3
+                  },
+                  {
+                    "leftValue": "={{ $json.years_of_experience }}",
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    },
+                    "rightValue": 5
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "3–5 Years"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 1
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.years_of_experience }}",
+                    "operator": {
+                      "type": "number",
+                      "operation": "gte"
+                    },
+                    "rightValue": 6
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "6+ Years"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "renameFallbackOutput": "No Match"
+        }
+      },
+      "id": "4986eec1-842f-4616-99a7-4b38e9adbaa3",
+      "name": "Categorize by Experience",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        576
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.email }}",
+        "subject": "=Your application for {{ $json.position }} – Update",
+        "message": "=<p>Dear {{ $json.full_name }},</p><p>Thank you for your interest in the <strong>{{ $json.position }}</strong> role at Daniel Okafor Logistics.</p><p>After reviewing your application, we have decided to keep your details on file. We will reach out when a suitable opportunity arises.</p><p>We appreciate the time you took to apply.</p><p>Best regards,<br>Daniel Okafor Logistics</p>",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "87ad75a8-c51b-4f9d-a571-8329561198f0",
+      "name": "Keep on File Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        464,
+        304
+      ],
+      "webhookId": "2b30b380-18b6-4204-8622-153d93a7e55a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "70ijxgzsrPyWux9k",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.email }}",
+        "subject": "=Interview Invitation – {{ $json.position }}",
+        "message": "=<p>Dear {{ $json.full_name }},</p><p>Congratulations! We were impressed by your application for the <strong>{{ $json.position }}</strong> role and would like to invite you for an interview.</p><p>Our team will contact you shortly to schedule a convenient time. Please have your CV and any portfolio materials ready.</p><p>We look forward to speaking with you.</p><p>Best regards,<br>Daniel Okafor Logistics</p>",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "158b04a1-6ec1-4c7a-a50e-3c5e179010e4",
+      "name": "Interview Invitation (3–5 Yrs)",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        448,
+        496
+      ],
+      "webhookId": "d28240e4-888b-44d3-8bf0-5111fabe576a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "70ijxgzsrPyWux9k",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.email }}",
+        "subject": "=Priority Interview Invitation – {{ $json.position }}",
+        "message": "=<p>Dear {{ $json.full_name }},</p><p>Thank you for applying for the <strong>{{ $json.position }}</strong> role at Daniel Okafor Logistics. Your extensive experience stands out and we would like to invite you for a priority interview.</p><p>Our hiring manager will reach out within 24 hours to arrange a call at your convenience.</p><p>We look forward to connecting with you.</p><p>Best regards,<br>Daniel Okafor Logistics</p>",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "02db5c38-33ad-44d0-bb65-a2fd92e4e0ea",
+      "name": "Interview Invitation (6+ Yrs)",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        448,
+        688
+      ],
+      "webhookId": "9339cf9e-a527-449f-af34-85af202bc955",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "70ijxgzsrPyWux9k",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Job Application Form": {
+      "main": [
+        [
+          {
+            "node": "Confirmation Email to Applicant",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Save to Google Sheets",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Notify HR Team",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Categorize by Experience",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Categorize by Experience": {
+      "main": [
+        [
+          {
+            "node": "Keep on File Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Interview Invitation (3–5 Yrs)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Interview Invitation (6+ Yrs)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "staticData": null,
+  "pinData": {},
+  "triggerCount": 1,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}
